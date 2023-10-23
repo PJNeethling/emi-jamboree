@@ -1,0 +1,25 @@
+<!-- Change this to drop down -->
+<mat-form-field>
+    <mat-label>Game Type</mat-label>
+    <textarea matInput [(ngModel)]="data.score.gameType"></textarea>
+</mat-form-field>
+
+<mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput cdkFocusInitial [(ngModel)]="data.score.name" />
+</mat-form-field>
+
+<mat-form-field>
+    <mat-label>Surname</mat-label>
+    <textarea matInput [(ngModel)]="data.score.surname"></textarea>
+</mat-form-field>
+
+<mat-form-field>
+    <mat-label>Score</mat-label>
+    <textarea matInput [(ngModel)]="data.score.score"></textarea>
+</mat-form-field>
+
+<div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="{ score: data.score }">OK</button>
+    <button mat-button (click)="cancel()">Cancel</button>
+</div>
