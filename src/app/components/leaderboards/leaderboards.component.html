@@ -2,15 +2,17 @@
 <div class="leaderboards-container">
     <div class="leaderboard">
       <h2 class="leaderboard-title">Mario Leaderboard</h2>
-      <app-generic-leaderboard [scores]="marioScores"></app-generic-leaderboard>
+      <mat-spinner *ngIf="marioLoading" diameter="30"></mat-spinner>
+      <app-generic-leaderboard [scores]="marioScores" *ngIf="!marioLoading"></app-generic-leaderboard>
     </div>
     <div class="leaderboard">
       <h2 class="leaderboard-title">Dino Leaderboard</h2>
-      <app-generic-leaderboard [scores]="dinoScores"></app-generic-leaderboard>
+      <mat-spinner *ngIf="dinoLoading" diameter="30"></mat-spinner>
+      <app-generic-leaderboard [scores]="dinoScores" *ngIf="!dinoLoading"></app-generic-leaderboard>
     </div>
     <div class="leaderboard">
       <h2 class="leaderboard-title">Beer Leaderboard</h2>
-      <app-generic-leaderboard [scores]="beerScores"></app-generic-leaderboard>
+      <mat-spinner *ngIf="beerLoading" diameter="30"></mat-spinner>
+      <app-generic-leaderboard [scores]="beerScores" *ngIf="!beerLoading"></app-generic-leaderboard>
     </div>
 </div>
-  

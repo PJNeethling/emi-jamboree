@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { Score } from 'src/app/models/score';
 import { LeaderboardService } from 'src/app/services/leaderboard.service';
 
@@ -13,41 +14,54 @@ export class LeaderboardsComponent implements OnInit {
   public beerScores!: Score[];
   public scores!: Score[];
 
+  public marioLoading = true;
+  public dinoLoading = true;
+  public beerLoading = true;
+
   constructor(private service: LeaderboardService) { }
 
   ngOnInit(): void {
-    this.getScores();
-    
-    this.getMarioScores();
-    this.getDinoScores();
-    this.getBeerScores();
-  }
-
-  private getMarioScores() {
-    this.filterScores(this.scores, 'mario');
-  }
-
-  private getDinoScores() {
-    this.filterScores(this.scores, 'dino');
-  }
-
-  private getBeerScores() {
-    this.filterScores(this.scores, 'beer');
-  }
-
-  private getScores() {
-    this.service.getScores().subscribe(scores => {
-      this.scores = scores;
+    this.getScores().subscribe(data => {
+      this.scores = data;
+      this.getMarioScores();
+      this.getDinoScores();
+      this.getBeerScores();
     });
   }
 
-  private filterScores(scores: Score[], gameType: string){
-    if (gameType === 'mario') {
-      this.marioScores = scores.filter(score => score.gameType === 'mario');
-    } else if (gameType === 'dino') {
-      this.dinoScores = scores.filter(score => score.gameType === 'dino');
-    } else if (gameType === 'beer') {
-      this.beerScores = scores.filter(score => score.gameType === 'beer');
-    }
+  private getMarioScores() {
+    this.filterScores('mario', (scores) => {
+      this.marioScores = scores;
+      this.marioLoading = false;
+    });
+  }
+
+  private getDinoScores() {
+    this.filterScores('dinosaur', (scores) => {
+      this.dinoScores = scores;
+      this.dinoLoading = false;
+    });
+  }
+
+  private getBeerScores() {
+    this.filterScores('beer', (scores) => {
+      this.beerScores = scores;
+      this.beerLoading = false;
+    });
+  }
+
+  private getScores() {
+    return this.service.getScores().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    );
+  }
+
+  private filterScores(gameType: string, callback: (scores: Score[]) => void){
+    const filteredScores = this.scores.filter(score => score.gameType === gameType);
+    callback(filteredScores);
   }
 }
