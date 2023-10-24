@@ -31,7 +31,7 @@ export class LeaderboardsComponent implements OnInit {
 
   private getMarioScores() {
     this.filterScores('mario', (scores) => {
-      this.marioScores = scores.sort((a, b) => this.compareMarioScores(a, b));
+      this.marioScores = scores.map(score => ({ ...score, score: +score.score })).sort((a, b) => b.score - a.score);
       this.marioLoading = false;
     });
   }
@@ -63,20 +63,5 @@ export class LeaderboardsComponent implements OnInit {
   private filterScores(gameType: string, callback: (scores: Score[]) => void){
     const filteredScores = this.scores.filter(score => score.gameType === gameType);
     callback(filteredScores);
-  }
-
-  private compareMarioScores(a: Score, b: Score) {
-    const [minA, secA, msecA] = a.score.toString().split('.').map(Number);
-    const [minB, secB, msecB] = b.score.toString().split('.').map(Number);
-  
-    if (minA !== minB) {
-      return minA - minB;
-    }
-  
-    if (secA !== secB) {
-      return secA - secB;
-    }
-  
-    return msecA - msecB;
   }
 }
