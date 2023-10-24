@@ -9,6 +9,7 @@ import { Score } from '../../models/score';
 })
 export class ScoreDialogComponent {
   private backupScore: Partial<Score> = { ...this.data.score };
+  public isGameTypeSelected = false;
 
   constructor(
     public dialogRef: MatDialogRef<ScoreDialogComponent>,
@@ -21,6 +22,11 @@ export class ScoreDialogComponent {
     this.data.score.name = this.backupScore.name;
     this.data.score.surname = this.backupScore.surname;
     this.dialogRef.close(this.data);
+  }
+
+  onGameTypeChange(event: any) {
+    console.log(event)
+    this.isGameTypeSelected = !!event;
   }
 }
 

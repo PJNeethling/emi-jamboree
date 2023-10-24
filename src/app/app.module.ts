@@ -17,6 +17,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { FormsModule } from '@angular/forms';
 
@@ -47,6 +48,7 @@ import { environment } from '../environments/environment';
     FormsModule,
     MatSelectModule,
     MatProgressSpinnerModule,
+    MatTooltipModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule
   ],

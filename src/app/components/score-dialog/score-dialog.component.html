@@ -1,26 +1,31 @@
 <div class="dialog-content">
     <mat-form-field>
         <mat-label>Game Type</mat-label>
-        <mat-select [(ngModel)]="data.score.gameType">
+        <mat-select cdkFocusInitial [(ngModel)]="data.score.gameType" (ngModelChange)="onGameTypeChange($event)">
             <mat-option value="mario">Mario</mat-option>
             <mat-option value="dinosaur">Dinosaur</mat-option>
             <mat-option value="beer">Beer</mat-option>
         </mat-select>
-    </mat-form-field>
+    </mat-form-field>    
 
     <mat-form-field>
         <mat-label>Name</mat-label>
-        <input matInput cdkFocusInitial [(ngModel)]="data.score.name" />
+        <input matInput [(ngModel)]="data.score.name" [disabled]="!isGameTypeSelected" />
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Surname</mat-label>
-        <textarea matInput [(ngModel)]="data.score.surname"></textarea>
+        <input matInput [(ngModel)]="data.score.surname" [disabled]="!isGameTypeSelected" />
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Score</mat-label>
-        <textarea matInput [(ngModel)]="data.score.score"></textarea>
+        <input matInput [(ngModel)]="data.score.score" 
+            *ngIf="data.score.gameType === 'mario'; else noPlaceholder"       
+            matTooltip="Please enter the score in the format 02.52.40 and remember to use .'s" />
+        <ng-template #noPlaceholder>
+            <input matInput [(ngModel)]="data.score.score" [disabled]="!isGameTypeSelected"/>
+        </ng-template>
     </mat-form-field>
 
     <div mat-dialog-actions>

@@ -1,0 +1,28 @@
+.mat-mdc-table .mdc-data-table__header-row {
+    height: 50px;
+}
+
+.mat-mdc-table .mdc-data-table__row{
+    height: 35px;
+}
+
+th {
+    font-weight: bold;
+    text-align: left;
+    text-transform: uppercase; /* Optional: Transform text to uppercase */
+    border-bottom: 2px solid #000; /* Add an underline */
+    font-size: 12px; /* Adjust the font size as needed */
+}
+
+.winner {
+    background-color: #73ee73; /* Winner color */
+}
+
+.second {
+    background-color: #80d0e4; /* Second place color */
+}
+
+.third {
+    background-color: #e4a8ab; /* Third place color */
+}
+  
