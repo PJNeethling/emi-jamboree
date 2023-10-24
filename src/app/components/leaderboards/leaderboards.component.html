@@ -1,18 +1,24 @@
 <br>
 <div class="leaderboards-container">
-    <div class="leaderboard">
+  <div class="leaderboard">
+      <img src="https://assetsio.reedpopcdn.com/digitalfoundry-2017-mario-kart-8-deluxe-tech-analysis-1492685857061.jpg?width=690&quality=75&format=jpg&auto=webp" alt="Mario Leaderboard Image" />
       <h2 class="leaderboard-title">Mario Leaderboard</h2>
       <mat-spinner *ngIf="marioLoading" diameter="30"></mat-spinner>
-      <app-generic-leaderboard [scores]="marioScores" *ngIf="!marioLoading"></app-generic-leaderboard>
+      <app-generic-leaderboard [scores]="marioScores" *ngIf="!marioLoading">
+      </app-generic-leaderboard>
     </div>
     <div class="leaderboard">
+      <img src="https://i.pinimg.com/736x/92/37/7b/92377be413940d8fb433998cbbae6d83--game.jpg" alt="Dino Leaderboard Image" />
       <h2 class="leaderboard-title">Dino Leaderboard</h2>
       <mat-spinner *ngIf="dinoLoading" diameter="30"></mat-spinner>
-      <app-generic-leaderboard [scores]="dinoScores" *ngIf="!dinoLoading"></app-generic-leaderboard>
+      <app-generic-leaderboard [scores]="dinoScores" *ngIf="!dinoLoading">
+      </app-generic-leaderboard>
     </div>
     <div class="leaderboard">
+      <img src="https://i.pinimg.com/originals/83/e2/ce/83e2ce52119d4f28aff564969e5c2125.jpg" alt="Beer Leaderboard Image" />
       <h2 class="leaderboard-title">Beer Leaderboard</h2>
       <mat-spinner *ngIf="beerLoading" diameter="30"></mat-spinner>
-      <app-generic-leaderboard [scores]="beerScores" *ngIf="!beerLoading"></app-generic-leaderboard>
+      <app-generic-leaderboard [scores]="beerScores" *ngIf="!beerLoading">
+      </app-generic-leaderboard>
     </div>
 </div>
